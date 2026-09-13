@@ -14,12 +14,14 @@ function patchFile(root,cwd,name) {
   let current=path.parse(absolute).root,anchored=false;const relative=[];
   const parts=absolute.slice(current.length).split(process.platform==='win32'?/[\\/]/:/\//);
   try{
-    anchored=fs.realpathSync(current)===root;
+    // Native canonicalization expands Windows 8.3 aliases such as RUNNER~1.
+    // The JS realpath implementation may leave those aliases unchanged.
+    anchored=fs.realpathSync.native(current)===root;
     for(const part of parts){
       if(!part||part==='.')continue;
       if(!anchored){
         current+=`${current.endsWith(path.sep)?'':path.sep}${part}`;
-        try{anchored=fs.realpathSync(current)===root;}catch(error){if(!['ENOENT','ENOTDIR'].includes(error.code))throw error;}
+        try{anchored=fs.realpathSync.native(current)===root;}catch(error){if(!['ENOENT','ENOTDIR'].includes(error.code))throw error;}
       }else if(part==='..'){
         if(!relative.length)return null;relative.pop();
       }else{
@@ -37,7 +39,7 @@ export function mutationScope(event,root) {
     if(typeof command!=='string')return null;
     const names=[...command.matchAll(/^\*\*\* (?:Add File|Update File|Delete File|Move to): (.+)$/gm)].map(m=>m[1]);
     if(input.file_path)names.push(input.file_path);
-    const cwd=event.cwd||root;try{root=fs.realpathSync(root);}catch{return null;}
+    const cwd=event.cwd||root;try{root=fs.realpathSync.native(root);}catch{return null;}
     const files=names.filter(n=>typeof n==='string').map(n=>patchFile(root,cwd,n)).filter(Boolean);
     return files.length?new Set(files):null;
   }

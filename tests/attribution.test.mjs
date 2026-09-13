@@ -8,6 +8,14 @@ const raw=(f,name,text)=>fs.writeFileSync(path.join(f.root,name),text);
 const prompt=f=>f.engine.hook(event(f.root,'UserPromptSubmit','one',{prompt:'只检查 Codex 改动'}));
 const tool=(f,type,name='apply_patch',command='*** Update File: main.js\n')=>f.engine.hook(event(f.root,type,'one',{tool_use_id:'call-1',tool_name:name,tool_input:{command}}));
 
+test('native canonical roots accept the OS temporary-directory spelling for existing and missing patch files',t=>{
+ const f=fixture(t),root=fs.realpathSync.native(f.root);
+ for(const name of ['main.js','new/nested.js'])for(const file of [name,path.join(f.root,name)]){
+  const scope=mutationScope({cwd:f.root,tool_name:'apply_patch',tool_input:{command:`*** Update File: ${file}\n`}},root);
+  assert.deepEqual(scope&&[...scope],[name]);
+ }
+});
+
 test('a rejected single-file patch without PostToolUse does not strand a successful retry',async t=>{
  const f=fixture(t);prompt(f);
  const patch=old=>`*** Begin Patch\n*** Update File: main.js\n@@\n-${old}\n+export const value = 2;\n*** End Patch`;

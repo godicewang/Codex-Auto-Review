@@ -1,6 +1,6 @@
 {
   "name": "autoreview",
-  "version": "0.2.0+codex.20260913161953",
+  "version": "0.2.0+codex.20260913163844",
   "description": "Silent, read-only Codex review with next-turn advice",
   "author": {
     "name": "godicewang"

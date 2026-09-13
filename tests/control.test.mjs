@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {activateIntegration,REQUIRED_EVENTS,ownHooks} from '../plugins/autoreview/src/control.mjs';
 import {fixture} from './helpers.mjs';
+import {gitRoot} from '../plugins/autoreview/src/util.mjs';
 const root=fs.realpathSync(path.resolve('plugins/autoreview'));
 const metadata=()=>REQUIRED_EVENTS.map((eventName,i)=>({eventName,key:`autoreview@personal:hooks/hooks.json:${eventName}:0:0`,source:'plugin',sourcePath:path.join(root,'hooks/hooks.json'),pluginId:'autoreview@personal',handlerType:'command',command:`node "${path.join(root,'hooks/dispatch.mjs')}"`,currentHash:'sha256:'+String(i).repeat(64),trustStatus:'untrusted',enabled:true,isManaged:false}));
 test('activation records only exact installed AutoReview hashes with the official config API',async()=>{
@@ -24,7 +25,7 @@ test('desktop action connects and enables the supplied project without affecting
  const f=fixture(t);const {serve}=await import('../plugins/autoreview/src/server.mjs');const {request}=await import('../plugins/autoreview/src/client.mjs');const calls=[];
  const app=await serve({dir:f.store.dir,engine:f.engine,persist:false,activate:async root=>{calls.push(root);return {ready:true,hookCount:6};}});t.after(()=>app.close());
  f.engine.configure(f.project.id,{enabled:false});await assert.rejects(request(app,'/api/desktop/connect',{}),/当前 Codex/);
- const p=await request(app,'/api/desktop/connect',{root:f.root});assert.equal(p.enabled,true);assert.deepEqual(calls,[fs.realpathSync(f.root)]);assert.equal(f.engine.list().desktopContext.projectId,p.id);assert.equal(f.engine.list().integration.ready,true);
+ const p=await request(app,'/api/desktop/connect',{root:f.root});assert.equal(p.enabled,true);assert.deepEqual(calls,[gitRoot(f.root)]);assert.equal(f.engine.list().desktopContext.projectId,p.id);assert.equal(f.engine.list().integration.ready,true);
 });
 
 test('cancelling an official control query rejects further calls and waits for the real process to exit',async()=>{

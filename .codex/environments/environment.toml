@@ -1,0 +1,12 @@
+version = 1
+name = "AutoReview"
+
+[setup]
+script = ""
+
+# BEGIN AUTOREVIEW LAUNCHER
+[[actions]]
+name = "AutoReview"
+icon = "tool"
+command = "node -e \"require(require('node:os').homedir()+'/.autoreview/launcher.cjs')\""
+# END AUTOREVIEW LAUNCHER

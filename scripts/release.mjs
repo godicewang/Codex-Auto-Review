@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+const {version}=JSON.parse(fs.readFileSync('package.json'));
+fs.mkdirSync('dist',{recursive:true});
+const output=path.resolve(`dist/autoreview-v${version}.tar.gz`);
+const files=['package.json','AGENTS.md','README.md','README.en.md','README.zh-CN.md','LICENSE','CONTRIBUTING.md','SECURITY.md','CHANGELOG.md','.gitignore','.github','.agents','.codex','plugins','scripts','tests','docs'];
+const result=spawnSync('tar',['-czf',output,'--exclude=docs/experiments','--exclude=.DS_Store','--exclude=._*',...files],{stdio:'inherit',env:{...process.env,COPYFILE_DISABLE:'1'}});
+if(result.error||result.status)throw new Error('Release packaging requires tar (available on macOS, Linux, and recent Windows).');
+const hash=createHash('sha256').update(fs.readFileSync(output)).digest('hex');
+fs.writeFileSync(`${output}.sha256`,`${hash}  ${path.basename(output)}\n`);
+console.log(`Created ${output}\nSHA-256: ${hash}`);

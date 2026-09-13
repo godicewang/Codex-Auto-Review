@@ -1,0 +1,21 @@
+{
+  "name": "codex-autoreview-plugin",
+  "version": "0.2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20.11"
+  },
+  "bin": {
+    "autoreview": "bin/autoreview.mjs"
+  },
+  "license": "MIT",
+  "description": "Silent, read-only Codex review with next-turn advice",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/godicewang/Codex-Auto-Review.git"
+  },
+  "homepage": "https://github.com/godicewang/Codex-Auto-Review",
+  "bugs": {
+    "url": "https://github.com/godicewang/Codex-Auto-Review/issues"
+  }
+}

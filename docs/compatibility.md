@@ -1,6 +1,6 @@
 # Compatibility — v0.2
 
-Rechecked on 2026-09-14: 112 automated tests passed, installation was verified, and the real CLI completed the write → automatic review → next-prompt report-consumption workflow. See [validation](validation.md) for exact coverage and desktop GUI limitations.
+Rechecked on 2026-09-14: 113 automated tests passed, installation was verified, and the real CLI completed the write → automatic review → next-prompt report-consumption workflow. [GitHub CI](https://github.com/godicewang/Codex-Auto-Review/actions/runs/34769507661) passed on macOS, Linux and Windows with Node 20/22, including release packaging. See [validation](validation.md) for exact coverage and desktop GUI limitations.
 
 Locally tested on macOS with Node.js 23.11.0, Git 2.50.1 and Codex CLI `0.154.0-alpha.6.2`. The native shell compiled with the installed Swift toolchain using an explicit macOS SDK and macOS 13 deployment target. The floating AppKit panel, local WKWebView, enable toggle and compact resize were exercised through the actual native app.
 
@@ -13,13 +13,13 @@ Locally tested on macOS with Node.js 23.11.0, Git 2.50.1 and Codex CLI `0.154.0-
 
 The installer configures only the installed AutoReview hook definitions via official `hooks/list` and `config/batchWrite` (`hooks.state.<key>.trusted_hash` / `enabled`) and verifies them. No manual interactive CLI setup, global bypass, managed-policy edits, private database changes or other-plugin trust writes. New conversations pick up upgraded definitions. Existing sessions need a configuration reload in their own host; an external installer's reload is insufficient on the tested version. Codex's plugin toggle issues that same-host reload. The companion links to the official plugin page and explains the required toggle; it does not claim to refresh the desktop host itself. This behavior was reproduced with the installed App Server and a local model protocol fixture; it is not a real GUI end-to-end result.
 
-macOS absolute patch paths may use `/var` while Git reports `/private/var`. Attribution resolves aliases of the repository root while preserving rejection of symlinks inside the checkout. Real code-mode CLI writes exposed and verified this fix.
+macOS absolute patch paths may use `/var` while Git reports `/private/var`; Windows may supply an 8.3 path such as `RUNNER~1`. Attribution uses native filesystem canonicalization for aliases of the repository root while preserving rejection of symlinks inside the checkout. Real CLI writes verified the macOS case; Windows CI covered short temporary paths.
 
 ## Interface and platforms
 
 A public API for third-party persistent native Codex chat sidebar registration has not been confirmed in the official plugin UI documentation. The macOS companion is a separate native floating window and menu bar item, not a modification of Codex. The same local panel can open in Codex's browser pane when the host exposes that tool.
 
-The macOS companion is optional; missing Swift build tools fall back to the browser. Linux/Windows use the web panel and remain platform integration targets. The included CI matrix targets Node 20/22 on macOS/Linux/Windows; remote CI has not run in this local session. App Server remains experimental in the tested CLI.
+The macOS companion is optional; missing Swift build tools fall back to the browser. Linux/Windows use the web panel. Automated tests pass on all three platforms; real desktop integration on Linux/Windows remains unverified. App Server remains experimental in the tested CLI.
 
 Sources checked on 2026-09-12: [Hooks](https://learn.chatgpt.com/docs/hooks), [App Server](https://learn.chatgpt.com/docs/app-server), [Plugin packaging](https://developers.openai.com/plugins/build/plugins), [Plugin UI](https://developers.openai.com/plugins/build/chatgpt-ui).
 

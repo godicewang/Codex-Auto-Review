@@ -8,6 +8,10 @@ const RETAIN_BYTES=MAX_LOG_BYTES/2;
 // Trim in place: an already-open daemon stdout descriptor must continue writing
 // to the retained file. Logs are best-effort diagnostics, never report storage.
 export function trimDiagnostic(file){
+  let stat;try{stat=fs.lstatSync(file);}catch(error){if(error.code==='ENOENT')return;throw error;}
+  // Windows can report ENOENT when opening an existing directory with r+.
+  // Check its type first so a broken log path remains visible in the panel.
+  if(!stat.isFile())throw new Error(`Diagnostic path is not a regular file: ${path.basename(file)}`);
   let fd;try{fd=fs.openSync(file,'r+');}catch(error){if(error.code==='ENOENT')return;throw error;}
   try{
     const size=fs.fstatSync(fd).size;if(size<=MAX_LOG_BYTES)return;

@@ -6,6 +6,7 @@
 - Check installer arguments, Codex login, hook availability, and project paths before changing plugin registration.
 - Avoid stranded write baselines for provably rejected single-file patch hunks when the host omits their completion event. Complex or ambiguous writes still require paired events.
 - Add an opt-in real CLI end-to-end check covering automatic review, completed-turn verification, and next-prompt report receipt.
+- Resolve Windows short-path aliases during patch attribution and report invalid diagnostic paths consistently across platforms.
 
 ## Hook integration diagnosis — 2026-09-13
 

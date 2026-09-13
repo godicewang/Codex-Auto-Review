@@ -1,5 +1,7 @@
 # Compatibility — v0.2
 
+Rechecked on 2026-09-14: 112 automated tests passed, installation was verified, and the real CLI completed the write → automatic review → next-prompt report-consumption workflow. See [validation](validation.md) for exact coverage and desktop GUI limitations.
+
 Locally tested on macOS with Node.js 23.11.0, Git 2.50.1 and Codex CLI `0.154.0-alpha.6.2`. The native shell compiled with the installed Swift toolchain using an explicit macOS SDK and macOS 13 deployment target. The floating AppKit panel, local WKWebView, enable toggle and compact resize were exercised through the actual native app.
 
 ## Official Codex integration

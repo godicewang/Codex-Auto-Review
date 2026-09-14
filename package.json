@@ -17,10 +17,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/godicewang/Codex-Auto-Review.git"
+    "url": "git+https://github.com/godicewang/Codex-Auto-Review-Plugin.git"
   },
-  "homepage": "https://github.com/godicewang/Codex-Auto-Review",
+  "homepage": "https://github.com/godicewang/Codex-Auto-Review-Plugin",
   "bugs": {
-    "url": "https://github.com/godicewang/Codex-Auto-Review/issues"
+    "url": "https://github.com/godicewang/Codex-Auto-Review-Plugin/issues"
   }
 }

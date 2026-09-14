@@ -3,7 +3,7 @@
 ## 2026-09-14 发布前验证
 
 - `npm test`：113 项通过，无失败或跳过；源码检查和插件结构验证通过。
-- [GitHub CI](https://github.com/godicewang/Codex-Auto-Review/actions/runs/34769507661)：macOS、Linux、Windows × Node 20/22 六组检查及发布打包全部通过。Windows 实测暴露并修复短路径别名无法归因、异常日志目录未显示维护错误两处问题。
+- [GitHub CI](https://github.com/godicewang/Codex-Auto-Review-Plugin/actions/runs/34769507661)：macOS、Linux、Windows × Node 20/22 六组检查及发布打包全部通过。Windows 实测暴露并修复短路径别名无法归因、异常日志目录未显示维护错误两处问题。
 - 安装器重新安装成功：六个 hook 已启用并受信任，六个 MCP 工具连接成功。网页面板正常加载，设置弹窗显示正确项目，取消不改变设置。
 - `node scripts/smoke-real.mjs`：真实审计模型指出受控样例中 `total([])` 抛错，中文建议准确；原文件和 Git index 未变，副本清理完成。该脚本的宿主事件为模拟输入。
 - `node scripts/smoke-cli.mjs`：真实 CLI 发出写入 hooks，官方回合查询确认同一回合 completed，真实后台模型完成审计；恢复同一 CLI 会话后，接收模型复述了只在 hook 上下文中提供的报告 ID，队列完成交接。源码和 Git index 未被审计修改，临时项目和插件数据已删除。没有使用合成报告或模拟完成状态。

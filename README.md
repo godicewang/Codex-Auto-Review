@@ -19,12 +19,12 @@ AutoReview 是一个 Codex 插件，把这一步自动化：一轮代码改动�
 需要 **Node.js 20.11+、Git，以及已登录、支持 plugins / hooks / App Server 的 Codex**。
 
 ```sh
-git clone https://github.com/godicewang/Codex-Auto-Review.git
-cd Codex-Auto-Review
+git clone https://github.com/godicewang/Codex-Auto-Review-Plugin.git
+cd Codex-Auto-Review-Plugin
 npm run setup
 ```
 
-无需 `npm install`。也可以 [下载 ZIP](https://github.com/godicewang/Codex-Auto-Review/archive/refs/heads/main.zip)，解压后在文件夹中运行 `npm run setup`。
+无需 `npm install`。也可以 [下载 ZIP](https://github.com/godicewang/Codex-Auto-Review-Plugin/archive/refs/heads/main.zip)，解压后在文件夹中运行 `npm run setup`。
 
 ## 开始使用
 

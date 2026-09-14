@@ -1,6 +1,6 @@
 {
   "name": "autoreview",
-  "version": "0.2.0+codex.20260914131020",
+  "version": "0.2.0+codex.20260914131136",
   "description": "Silent, read-only Codex review with next-turn advice",
   "author": {
     "name": "godicewang"
@@ -21,6 +21,6 @@
       "\u6253\u5f00 AutoReview \u60ac\u6d6e\u7a97\uff0c\u5e76\u5f00\u542f\u5f53\u524d\u9879\u76ee\u7684\u53ea\u8bfb\u5ba1\u8ba1\u3002",
       "\u67e5\u770b\u6700\u8fd1\u7684 AutoReview \u5ba1\u8ba1\u610f\u89c1\u3002"
     ],
-    "websiteURL": "https://github.com/godicewang/Codex-Auto-Review"
+    "websiteURL": "https://github.com/godicewang/Codex-Auto-Review-Plugin"
   }
 }

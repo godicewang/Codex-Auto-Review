@@ -19,12 +19,12 @@ AutoReview is a Codex plugin that handles this handoff. After a coding turn fini
 Requires **Node.js 20.11+, Git, and a signed-in Codex with plugins, hooks, and App Server support**.
 
 ```sh
-git clone https://github.com/godicewang/Codex-Auto-Review.git
-cd Codex-Auto-Review
+git clone https://github.com/godicewang/Codex-Auto-Review-Plugin.git
+cd Codex-Auto-Review-Plugin
 npm run setup
 ```
 
-No `npm install` needed. You can also [download the ZIP](https://github.com/godicewang/Codex-Auto-Review/archive/refs/heads/main.zip), extract it, and run `npm run setup` in that folder.
+No `npm install` needed. You can also [download the ZIP](https://github.com/godicewang/Codex-Auto-Review-Plugin/archive/refs/heads/main.zip), extract it, and run `npm run setup` in that folder.
 
 ## Use
 

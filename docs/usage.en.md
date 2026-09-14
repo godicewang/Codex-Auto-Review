@@ -1,4 +1,4 @@
-# AutoReview
+# Codex AutoReview Plugin
 
 **Quiet code review. Useful advice in your next Codex turn.**
 

@@ -1,4 +1,4 @@
-# AutoReview
+# Codex AutoReview Plugin
 
 **安静审计，意见随下一轮需求传达。**
 
